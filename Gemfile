@@ -10,8 +10,8 @@ gem "rails", "~> 7.0.0"
 gem "sprockets-rails"
 
 # Use sqlite3 as the database for Active Record
-#gem "sqlite3", "~> 1.4"
-gem 'pg', '~> 0.18.4'
+gem "sqlite3", "~> 1.4"
+gem 'pg', '~> 1.3', '>= 1.3.1'
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
 
@@ -69,7 +69,9 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "webdrivers"
+  
 end
+
 group :production do
-  gem 'pg', '~> 0.18.4'
+  gem 'pg', '~> 1.3', '>= 1.3.1'
 end
