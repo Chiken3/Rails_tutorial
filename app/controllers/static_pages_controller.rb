@@ -10,4 +10,9 @@ class StaticPagesController < ApplicationController
   def about
     #=> "app/views/static_pages/about"
   end  
+
+  def contact
+
+  end  
+
 end
