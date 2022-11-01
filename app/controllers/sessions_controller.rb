@@ -3,7 +3,6 @@ class SessionsController < ApplicationController
   def new
     # @session = Session.new             ✖️ -> model is none
     # scope: :session + url: login_path  ◯　
-
   end
 
   # POST /login
@@ -11,7 +10,7 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:session][:email])
     if user && user.authenticate(params[:session][:password])
       # Success 
-      login(user)
+      log_in(user)
       # user_url(user)
       redirect_to user
     else
