@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+    attr_accessor :remember_token
     has_many :microposts, dependent: :destroy
     before_save {self.email = self.email.downcase}
     validates :name, presence:true, length: { maximum: 50 }
@@ -15,6 +16,11 @@ class User < ApplicationRecord
         cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
                                                     BCrypt::Engine.cost
         BCrypt::Password.create(string, cost: cost)
+    end
+
+    # ランダムなトークンを返す
+    def User.new_token
+        SecureRandom.urlsafe_base64
     end
 
     # 永続化セッションのためにユーザーをデータベースに記憶する
