@@ -30,6 +30,17 @@ class User < ApplicationRecord
         remember_digest
     end
 
+    # 渡されたトークンがダイジェストと一致したらtrueを返す
+    def authenticated?(remember_token)
+        return false if remember_digest.nil?
+        BCrypt::Password.new(remember_digest).is_password?(remember_token)
+    end
+
+    # ユーザーのログイン情報を破棄する
+    def forget
+        update_attribute(:remember_digest, nil)
+    end
+
     # セッションハイジャック防止のためにセッショントークンを返す
     # この記憶ダイジェストを再利用しているのは単に利便性のため
     def session_token

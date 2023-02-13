@@ -11,9 +11,9 @@ class SessionsController < ApplicationController
     if user&.authenticate(params[:session][:password])
       # Success 
       reset_session #ログイン直前に書くことでセッションリプレイ攻撃を防ぐ
+      remember user
       log_in(user)
-      # user_url(user)
-      redirect_to user
+      redirect_to user   # user_url(user)
     else
       # Failed
       # alert-danger -> 赤色フラッシュ
@@ -23,7 +23,7 @@ class SessionsController < ApplicationController
   end  
 
   def destroy
-    log_out
+    log_out if logged_in?
     redirect_to root_url, status: :see_other
   end
 
