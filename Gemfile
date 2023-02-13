@@ -1,13 +1,17 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "3.0.4"
+ruby "3.1.2"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.4"
 gem 'bootstrap-sass', '~> 3.4', '>= 3.4.1'
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
+
+gem "will_paginate",           "3.3.1"
+gem "bootstrap-will_paginate", "1.0.0"
+gem "faker",           "2.21.0"
 
 # Use sqlite3 as the database for Active Record
 #gem "sqlite3", "~> 1.4"
