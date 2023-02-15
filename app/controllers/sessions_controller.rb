@@ -7,11 +7,11 @@ class SessionsController < ApplicationController
 
   # POST /login
   def create
-    user = User.find_by(email: params[:session][:email])
+    user = User.find_by(email: params[:session][:email].downcase)
     if user&.authenticate(params[:session][:password])
       # Success 
       reset_session #ログイン直前に書くことでセッションリプレイ攻撃を防ぐ
-      remember user
+      params[:session][:remember_me] == '1' ? remember(user) : forget(user)
       log_in(user)
       redirect_to user   # user_url(user)
     else
